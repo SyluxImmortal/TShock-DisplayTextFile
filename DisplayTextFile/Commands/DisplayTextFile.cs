@@ -55,12 +55,14 @@ namespace DisplayTextFile.Commands
 				case "broadcast":
 					BroadcastCommand(args);
 					break;
-				default:
-					if (subCommand != "list")
-					{
-						args.Parameters.Insert(0, subCommand);
-					}
+                case "list":
 					ListCommand(args);
+                    break;
+				default:
+                    args.Player.SendErrorMessage("Invalid subcommand! Valid subcommands:");
+                    args.Player.SendInfoMessage("/displaytext view <text file name> - Sends the contents of <filename> to the requesting player");
+                    args.Player.SendInfoMessage("/displaytext broadcast <text file name> - Sends the contents of <filename> to every player");
+                    args.Player.SendInfoMessage("/dispalytext list [page] - Lists the files in the tshock/DisplayTextFiles folder");
 					break;
 			}
 
